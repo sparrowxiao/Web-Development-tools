@@ -1,1 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Radio/Checkbox</title>
+    <link rel="stylesheet" href="css/style.css">
+  <!--  <style>
+    input[type='radio']:after {
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+     top: -2px;
+     left: -4px;
+     position: relative;
+     background-color: #d1d3d1;
+     content: '';
+     display: inline-block;
+     visibility: visible;
+     border: 6px solid #ebebeb;
+ }
+
+ input[type='radio']:checked:after {
+     width: 5px;
+     height: 5px;
+     border-radius: 50%;
+     top: 1px;
+     left: -2px;
+     position: relative;
+     background-color: #fff;
+     content: '';
+     display: inline-block;
+     visibility: visible;
+     border: 6px solid #f30;
+ }
+
+/*
+ input[type='checkbox']:before {
+  width: 10px;
+  height: 10px;
+
+  top: -4px;
+  left: -4px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: block;
+
+  border: 2px solid #000;
+}
+
+input[type='checkbox']:checked{
+  color: #d1d3d1;
+}
+
+input[type='checkbox']:checked:after {
+  width: 10px;
+  height: 10px;
+
+  top: -4px;
+  left: -4px;
+  position: relative;
+  background-color: #f30;
+  content: '';
+  display: block;
+
+  border: 2px solid #000;
+}*/
+
+input{
+  display: inline-block;
+  padding: 2px 12px 2px 12px;
+  font-size:300px;
+  line-height: 32px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  outline: 2px solid #f30;
+  box-shadow: none;
+  font-size: 2em;
+}
+</style>-->
+
+</head>
+
+<body bgcolor="#FAFAFA" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; height: 100% !important; width: 100% !important; background-color: #FAFAFA; margin: 0; padding: 0;">
+<div> base price</div>
+<div class="menu-pirce" data-price="11.90">$11.90</div>
+<h1>Radio</h1>
+<ul>
+  <li>
+<label class="control control--radio"> FlavorInfo1: $5.00
+<input class="addon flavor" type="radio" name="flavorinfo" data-type="flavor" data-price="5.00" data-name="flavorInfo1"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+  <label class="control control--radio">flavorInfo2: $3.00
+<input class="addon flavor" type="radio" name="flavorinfo" data-type="flavor" data-price="3.00" data-name="flavorInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+  <label class="control control--radio"> flavorInfo3: $6.00
+<input class="addon flavor" type="radio" name="flavorinfo" data-type="flavor" data-price="6.00" data-name="flavorInfo3"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+</ul>
+<br>
+
+<h1>Radio</h1>
+<ul>
+  <li>
+    <label class="control control--radio">choiceInfo1
+<input class="addon choice" type="radio" name="choiceinfo" data-type="choice" data-price="0.00" data-name="choiceInfo1"/>
+<div class="control__indicator"></div>
+</label>
+<li>
+  <label class="control control--radio">choiceInfo2
+<input class="addon choice" type="radio" name="choiceinfo" data-type="choice" data-price="0.00" data-name="choiceInfo2"/>
+<div class="control__indicator"></div>
+</label>
+
+</li>
+</ul>
+<br>
+<h1>Checkboxes 1</h1>
+<ul>
+  <li>
+<label class="control control--checkbox"> sourceInfo1: $2.50
+  <input class="addon source" type="checkbox" name="source1" data-price="2.50" data-name="sourceInfo1"/>
+  <div class="control__indicator"></div>
+  </label>
+</li>
+<li>
+<label class="control control--checkbox"> sourceInfo2: $2.50
+<input class="addon source" type="checkbox" name="source2" data-price="2.50" data-name="sourceInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+<label class="control control--checkbox"> sourceInfo2: $2.50
+<input class="addon source" type="checkbox" name="source3" data-price="2.50" data-name="sourceInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+<label class="control control--checkbox"> sourceInfo2: $2.50
+<input class="addon source" type="checkbox" name="source4" data-price="2.50" data-name="sourceInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+</ul>
+<h1>Checkboxes 2</h1>
+<ul>
+  <li>
+<label class="control control--checkbox"> extraInfo1: $5.50
+<input class="addon extra" type="checkbox" name="extra1" data-price="5.50" data-name="extraInfo1"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+<label class="control control--checkbox"> extraInfo2: $6.50
+<input class="addon extra" type="checkbox" name="extra2" data-price="6.50" data-name="extraInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+<label class="control control--checkbox"> extraInfo2: $5.00
+<input class="addon extra" type="checkbox" name="extra3" data-price="5.00" data-name="extraInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+<li>
+<label class="control control--checkbox"> extraInfo2: $2.50
+<input class="addon extra" type="checkbox" name="extra4" data-price="2.50" data-name="extraInfo2"/>
+<div class="control__indicator"></div>
+</label>
+</li>
+</ul>
+</body>
+
+
+
+    <script>
+    var baseprice = parseFloat($('.menu-pirce').data('price'));
+    console.log('baseprice='+ baseprice);
+    $('.addon').change(function(){
+      console.log("options is changed");
+      baseprice = baseprice + parseFloat($(this).data('price'));
+      console.log('new baseprice='+ baseprice);
+      $('.menu-pirce').html('$'+baseprice.toString());
+    });
+    // Your code goes here.
+
+    </script>
+
+</html>
 
