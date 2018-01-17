@@ -135,25 +135,25 @@ input[type="checkbox"] {
 <ul>
   <li>
 <label class="control control--checkbox"> sourceInfo1: $2.50
-  <input class="addon source" type="checkbox" name="source1" data-price="2.50" data-name="sourceInfo1"/>
+  <input class="addon source" type="checkbox" name="source" data-price="2.50" data-name="sourceInfo1"/>
   <div class="control__indicator"></div>
   </label>
 </li>
 <li>
 <label class="control control--checkbox"> sourceInfo2: $2.50
-<input class="addon source" type="checkbox" name="source2" data-price="2.50" data-name="sourceInfo2"/>
+<input class="addon source" type="checkbox" name="source" data-price="2.50" data-name="sourceInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
 <li>
 <label class="control control--checkbox"> sourceInfo2: $2.50
-<input class="addon source" type="checkbox" name="source3" data-price="2.50" data-name="sourceInfo2"/>
+<input class="addon source" type="checkbox" name="source" data-price="2.50" data-name="sourceInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
 <li>
 <label class="control control--checkbox"> sourceInfo2: $2.50
-<input class="addon source" type="checkbox" name="source4" data-price="2.50" data-name="sourceInfo2"/>
+<input class="addon source" type="checkbox" name="source" data-price="2.50" data-name="sourceInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
@@ -162,25 +162,25 @@ input[type="checkbox"] {
 <ul>
   <li>
 <label class="control control--checkbox"> extraInfo1: $5.50
-<input class="addon extra" type="checkbox" name="extra1" data-price="5.50" data-name="extraInfo1"/>
+<input class="addon extra" type="checkbox" name="extra" data-price="5.50" data-name="extraInfo1"/>
 <div class="control__indicator"></div>
 </label>
 </li>
 <li>
 <label class="control control--checkbox"> extraInfo2: $6.50
-<input class="addon extra" type="checkbox" name="extra2" data-price="6.50" data-name="extraInfo2"/>
+<input class="addon extra" type="checkbox" name="extra" data-price="6.50" data-name="extraInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
 <li>
 <label class="control control--checkbox"> extraInfo2: $5.00
-<input class="addon extra" type="checkbox" name="extra3" data-price="5.00" data-name="extraInfo2"/>
+<input class="addon extra" type="checkbox" name="extra" data-price="5.00" data-name="extraInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
 <li>
 <label class="control control--checkbox"> extraInfo2: $2.50
-<input class="addon extra" type="checkbox" name="extra4" data-price="2.50" data-name="extraInfo2"/>
+<input class="addon extra" type="checkbox" name="extra" data-price="2.50" data-name="extraInfo2"/>
 <div class="control__indicator"></div>
 </label>
 </li>
@@ -190,17 +190,36 @@ input[type="checkbox"] {
 
 
     <script>
+    var source_limit = 1;
+    var extra_limit = 1;
+    //price value change
     var baseprice = parseFloat($('.menu-pirce').data('price'));
     console.log('baseprice='+ baseprice);
-    $('.addon').change(function(){
+    /*$('.addon').change(function(){
       console.log("options is changed");
       baseprice = baseprice + parseFloat($(this).data('price'));
       console.log('new baseprice='+ baseprice);
       $('.menu-pirce').html('$'+baseprice.toString());
+    });*/
+    // checkbox limit check
+    $('.addon').on('change', function(evt) {
+      console.log('checkbox is selected');
+      var limit = 0;
+      if($(this).attr('name') == 'source'){
+        console.log('the type of this checkbox is source');
+        limit = source_limit;
+        console.log('source limit is'+ limit);
+      }
+      else if($(this).attr('name') == 'extra'){
+        console.log('the type of this checkbox is extra');
+        limit = extra_limit;
+        console.log('extra limit is'+ limit);
+      }
+      if($(this).siblings(':checked').length >= limit) {
+       this.checked = false;
+      }
     });
-    // Your code goes here.
 
     </script>
 
 </html>
-
