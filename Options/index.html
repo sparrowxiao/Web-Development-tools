@@ -216,7 +216,7 @@ $('.addon').on('change', function(evt) {
     console.log('extra limit is'+ limit);
   }
   //get all the inputs of this group
-  var option_group = $(this).parents('ul').find('input:checked');
+  var option_group = $(this).parents('ul').find('input[type="checkbox"]:checked');
   //if($(this).siblings(':checked').length >= limit) {
   if(option_group.length > limit){
    this.checked = false;
