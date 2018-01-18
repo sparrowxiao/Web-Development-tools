@@ -194,6 +194,7 @@ var source_limit = 1;
 var extra_limit = 2;
 //price value change
 var baseprice = parseFloat($('.menu-pirce').data('price'));
+
 console.log('baseprice='+ baseprice);
 /*$('.addon').change(function(){
   console.log("options is changed");
@@ -203,7 +204,7 @@ console.log('baseprice='+ baseprice);
 });*/
 // checkbox limit check
 $('.addon').on('change', function(evt) {
-  console.log('checkbox is selected');
+  console.log('addon input is selected');
   var limit = 0;
   if($(this).attr('name') == 'source'){
     console.log('the type of this checkbox is source');
@@ -220,8 +221,19 @@ $('.addon').on('change', function(evt) {
   //if($(this).siblings(':checked').length >= limit) {
   if(option_group.length > limit){
    this.checked = false;
-  }
+ }
+ updatePrice();
 });
+
+function updatePrice(){
+    console.log('updateprice');
+    var total_price = baseprice;
+    $('input:checked.addon').each(function(){
+      console.log('current price' + $(this).data('price'));
+      total_price = total_price + parseFloat($(this).data('price'));
+    });
+    $('.menu-pirce').html('$'+total_price.toString());
+}
 
 </script>
 
