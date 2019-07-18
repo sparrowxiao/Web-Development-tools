@@ -31,3 +31,5 @@ Help me use the right API [https://caniuse.com/#home]
  ### REST API
  A simple knowledge base about REST can be found https://restfulapi.net[https://restfulapi.net]
  A Demo[https://restfulapi.net/create-rest-apis-with-jax-rs-2-0/#demo]
+ 
+ An easy client-side-fetch-example is 5.to-do/
