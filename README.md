@@ -27,3 +27,7 @@ Help me use the right API [https://caniuse.com/#home]
     ![safari](https://user-images.githubusercontent.com/2945947/61143009-1b858000-a49f-11e9-80d2-6e5f59a5a54b.jpg)
   * Step 3 : Visit the test URL from the Safari on your iOS
   * Step 4 : Open the Safari > Develop > iPhone, then you will find the right page list under this section.
+  
+ ### REST API
+ A simple knowledge base about REST can be found https://restfulapi.net[https://restfulapi.net]
+ A Demo[https://restfulapi.net/create-rest-apis-with-jax-rs-2-0/#demo]
