@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <title>Test D3.js</title>
+     <style type="text/css">
+        * { margin: 0; padding: 0;}
+        div#chart {
+  width: 450px;
+  height: 450px;
+  margin: auto;
+  /*background-color: #2F4A6D;*/
+}
+        svg {
+            width: 100%;
+            height: 100%;
+            }
+        text {
+  font-size: 12px;
+  fill: #000;
+}
+/*
+path {
+  stroke: gray;
+}*/
+
+line {
+  stroke: gray;
+}
+
+line#limit {
+  stroke: #FED966;
+  stroke-width: 3;
+  stroke-dasharray: 3 6;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+#chart svg .tick line {
+  stroke: #444444;
+  stroke-dasharray: 2,3;
+  stroke-width:1.8px;
+  stroke-opacity: 0.3;
+}
+
+text.divergence {
+  font-size: 14px;
+  fill: #2F4A6D;
+}
+
+text.value {
+  font-size: 14px;
+}
+
+text.title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+text.label {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+text.source {
+  font-size: 10px;
+}
+
+div.tooltip{
+  position:absolute;
+  text-align:center;
+  pointer-events: none;
+  color:#fff;
+}
+     </style>
+     
+     <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+   <div id="chart">
+      <svg></svg>
+   </div>
+      <script>
+            //car value with loan
+            const sample1 = [
+               {
+                year: '0',
+                loan: 35000.00,
+                value: 35000.00
+              },
+              {
+                year: '1',
+                loan: 29166.67,
+                value: 26000.00
+              },
+              {
+                year: '2',
+                loan: 23333.34,
+                value: 19880.56
+              },
+              {
+                year: '3',
+                loan: 17500.01,
+                value:15776.38
+              },
+              {
+                year: '4',
+                loan: 11666.68,
+                value: 13490.77
+              },
+              {
+                year: '5',
+                loan: 5833.35,
+                value: 10400.67
+              },
+              {
+                year: '6',
+                loan: 0.00,
+                value: 8590.67
+              },
+              {
+                year: '7',
+                loan: 0.00,
+                value: 6390.67
+              },
+              {
+                year: '8',
+                loan: 0.00,
+                value: 5390.67
+              },
+              {
+                year: '9',
+                loan: 0.00,
+                value: 3890.67
+              },
+              {
+                year: '10',
+                loan: 0.00,
+                value: 2990.67
+              }
+            ];
+           // create coordinate chart
+           const margin = 60;
+           const width = 450 -  2* margin;
+           const height = 450 -  2* margin;
+        
+           const svg = d3.select('svg');
+           const chart = svg.append('g').attr('transform',`translate(${margin}, ${margin})`);
+        
+
+           
+
+            //buld scles to make this fit on svg
+            var xExtent = d3.extent(sample1, d => d.year)
+            var yExtent = d3.extent(sample1, d => d.loan)
+            
+            //x aixs
+            //const xScale = d3.scaleBand()
+            const xScale = d3.scaleLinear()
+            .range([0, width])
+            //.domain(sample1.map((s) => s.year));
+            .domain([0,10]);
+            //.padding(0.5)
+
+            // draw x aixs ticks
+            var xAxis = d3.axisBottom(xScale)
+             .ticks(10);
+
+
+            chart.append('g')
+            .attr('transform', `translate(0, ${height})`)
+            .call(xAxis)
+            .selectAll("text").remove();
+            
+            //draw x aixs lable and tick line for the whole chart
+            chart.append('g')
+            .attr('transform', `translate(0, ${height})`)
+            .call(d3.axisBottom(xScale).tickSize(-height*1.02).tickFormat(function(d) {return  d + "yr" ;}))
+            .select(".domain").remove();
+            
+            
+
+          
+           //y aixs
+           const yScale = d3.scaleLinear()
+            .range([height, 0])
+            .domain(yExtent);
+        
+          // y aixs label
+          var yAxis = d3.axisLeft(yScale)
+            .tickFormat(function(d) {return "$" + d ;});
+         //draw yaxis label    
+         chart.append('g')
+         .call(yAxis);
+
+            //draw the loan balance line
+            var line_Loan = d3.line()
+            .curve(d3.curveBasis)
+            .x(function(d) { return xScale(d.year);})
+            .y(function(d) { return yScale(d.loan);});
+            
+            chart.append("path")
+            .attr("class", "loan-line")
+            .attr("d", line_Loan(sample1))
+            .attr("fill","none")
+            .attr("stroke","#00529b")
+            .attr("stroke-width","2");
+            //.attr('transform',`translate(${margin}, ${margin})`);
+
+            //draw the points on the line
+            chart.append("g")
+            .attr("class", "dot")
+            .selectAll("dot")
+            .data(sample1)
+            .enter()
+            .append("circle")
+             .attr("cx",function(d) { return Math.round(xScale(d.year));})
+             .attr("cy",function(d) { return yScale(d.loan);})
+             .attr("r",5)
+             .attr("fill","#455679")
+             .attr("display","none");
+            
+            
+            //draw the settlement amout (car value)
+            var line_Value = d3.line()
+            .curve(d3.curveBasis)//have a curve style instead of segments
+            .x(function(d) { return xScale(d.year);})
+            .y(function(d) { return yScale(d.value);});
+
+            chart.append("path")
+            .attr("class", "value-line")
+            .attr("d", line_Value(sample1))
+            .attr("fill","none")
+            .attr("stroke","#dddddd")
+            .attr("stroke-width","2");
+
+
+
+             //show the points on the line
+            chart.append("g")
+              .attr("class", "dot")
+              .selectAll("dot")
+              .data(sample1)
+              .enter()
+              .append("circle")
+                .attr("cx",function(d) { return Math.round(xScale(d.year));})
+                .attr("cy",function(d) { return yScale(d.value);})
+                .attr("r",5)
+                .attr("fill","#69b3a2")
+                .attr("display","none");
+
+               //interactive methods
+           // create a tooltip
+    var Tooltip = d3.select("#chart")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "#00529b")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px")
+
+      // Three function that change the tooltip when user hover / move / leave a cell
+    
+      var mouseover = function(d) {
+        Tooltip
+          .style("opacity", 1)
+          .html("Car value: " + d.value)
+          .style("left", (d3.event.pageX + 10) + "px")
+          .style("top", d3.event.pageY + "px");
+        
+      }
+      
+      var mouseleave = function(d) {
+        
+      }
+        svg
+        .on("mousemove",function(){
+          const offset = 450;//the size of the canvas
+          var current_position = d3.event.pageX-offset;
+          chart.selectAll("circle").attr("display", "none");
+         
+          chart.selectAll("circle[cx=\""+current_position+"\"]")
+               .attr("display",  null );
+
+          Tooltip
+          .style("opacity", 1)
+          .html("Car value: " + yScale.invert(d3.event.pageY))
+          .style("left", (d3.event.pageX + 10) + "px")
+          .style("top", d3.event.pageY + "px");
+        })
+        .on("mouseout",function(){
+          chart.selectAll("circle").attr("display","none");
+          Tooltip.transition()		
+          .duration(200)		
+          .style("opacity", 0);
+        });
+ 
+
+
+          
+        </script>
+  
+</body>
+
+</html>
