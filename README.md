@@ -13,6 +13,9 @@ This is an example to get a full screen head image on webpage.
 ### 4.Options/
 This is an example to get the total price when making extra choices. You can give the checkboxs multiple options or single option.
 
+### 5.D3js_Gallery/
+Some easy charts for interacting with simple data set.
+
 ### CSS Lint
 Help you to write more DRY css code. Get shortcut by click here[http://csslint.net/#results]
 
@@ -32,4 +35,4 @@ Help me use the right API [https://caniuse.com/#home]
  A simple knowledge base about REST can be found https://restfulapi.net[https://restfulapi.net]
  A Demo[https://restfulapi.net/create-rest-apis-with-jax-rs-2-0/#demo]
  
- An easy client-side-fetch-example is 5.to-do/
+ An easy client-side-fetch-example is 6.to-do/
