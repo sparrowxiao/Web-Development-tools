@@ -1,10 +1,10 @@
 # Web Development Tools
 Cool, Useful, Efficient
 
-### 1.test.html
+### 1.NewProject.html
 Blank file with basic HTML, CSS, Javascript structured in this html file. Make life easy for starting a prototype very quickly.
 
-### 2.bootstrap.html
+### 2.NewProjectWithBootstrap.html
 This template is for starting a web app based on Bootstrap very quickly.
 
 ### 3.HeroImage/
